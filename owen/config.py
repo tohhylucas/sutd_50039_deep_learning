@@ -3,7 +3,7 @@ Configuration file for RUL Prediction Models
 """
 
 # ============ DATA CONFIGURATION ============
-DATA_DIR = '../data/processed-nasa-data'
+DATA_DIR = '../data/processed-nasa-data/data_cleaning_1/linear_rul_1'
 DATASETS = {
     'FD001': {
         'train': f'{DATA_DIR}/train_processed_rul_only_fd001.csv',
@@ -15,7 +15,7 @@ DATASETS = {
     }
 }
 
-SEQUENCE_LENGTH = 30
+SEQUENCE_LENGTH = 50  # Sequence length for RUL prediction (updated to match notebook implementation)
 BATCH_SIZE = 32
 TRAIN_VAL_SPLIT = 0.8
 
