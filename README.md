@@ -45,9 +45,9 @@ Use `RNN-based/` as the main area for the GRU/RNN/LSTM experiments.
   - `load_and_evaluate.ipynb`: loads the saved model from `best-gru.ipynb`, reproduces testing, and shows example predictions.
 - `tuning/`: hyperparameter search and multi-dataset model training used to find the final comparison setup, together with loss curves.
 
-## 3) Hybrid Transformer Project Navigation (`owen/`)
+## 3) Hybrid Transformer Project Navigation (`Hybrid/`)
 
-Use `owen/` for hybrid Transformer-based experiments (LSTM/GRU/CNN encoders with Transformer blocks).
+Use `Hybrid/` for hybrid Transformer-based experiments (LSTM/GRU/CNN encoders with Transformer blocks).
 
 - `archive/`: older files and experiments.
 - `model_exploration.ipynb`: baseline end-to-end workflow (EDA, sequence creation, hybrid model definitions, training pipeline).
@@ -67,18 +67,30 @@ Use `owen/` for hybrid Transformer-based experiments (LSTM/GRU/CNN encoders with
 - `transformer_results_detailed.csv`: saved results (all seeds) from various dataset runs.
 - `transformer_results_detailed.csv`: saved results (mean average) from various dataset runs.
 
-Note on Report Metrics: The report cites a Best Test RMSE of 12.10 for RULTransformer. This reflects the peak test performance observed during the hyperparameter grid search (seed=1234, seq_len=50, lr=0.001, num_layers=1). The final reproducible model, selected strictly via best Validation RMSE to prevent data leakage, achieved a Test RMSE of 12.41.
+## 5) Architecture Performance After Fine-tuning
 
-## 5) Data Processing Notebooks (`data_preparation/`)
+| Category | Model Architecture | Best Mean RMSE |
+| :--- | :--- | :--- |
+| **RNN-based** | RNN | 38.58 |
+| | GRU | 13.17 |
+| | LSTM | 39.58 |
+| **Transformer** | `RULTransformer` | ~~12.10~~ 12.41 |
+| **Hybrid** | CNN-Trans | 13.15 |
+| | GRU-Trans | 12.05 |
+| | LSTM-Trans | 12.20 |
+
+Note on Report Metrics: The report cites a Best Test RMSE of 12.10 for RULTransformer. This reflects the peak test performance observed during the hyperparameter grid search (seed=1234, seq_len=50, lr=0.001, num_layers=1). The final reproducible model (seed=1234, seq_len=50, lr=0.0005, num_layers=1), selected strictly via best Validation RMSE to prevent data leakage, achieved a Test RMSE of 12.41.
+
+## 6) Data Processing Notebooks (`data_preparation/`)
 
 - `data_cleaning_1.ipynb`: generates cleaned RUL-labeled CSVs (linear and piecewise targets, normalized/non-normalized variants) from raw NASA files.
 - `feature_engineering_2.ipynb`: feature engineering workflows (including filtering/selection variants) and exports processed datasets used by training notebooks.
 - Processed files are stored under `data/processed-nasa-data/` (not in `data_preparation/output/`).
 
-## 6) Suggested Reading Order
+## 7) Suggested Reading Order
 
 1. `data_preparation/data_cleaning_1.ipynb` and `data_preparation/feature_engineering_2.ipynb` (prepare and export datasets into `data/processed-nasa-data/`).
 2. `RNN-based/tuning/` notebooks (RNN hyperparameter and dataset exploration).
 3. `RNN-based/best_model_and_evaluation/best-gru.ipynb` and `RNN-based/best_model_and_evaluation/load_and_evaluate.ipynb` (final RNN training and evaluation).
 4. `Transformer/transformer-with-opt.ipynb` (standalone Transformer optimization and evaluation).
-5. `owen/model_exploration.ipynb`, then `owen/FD001_hyperparamter_tunning.ipynb` and FE/AWS notebooks (Hybrid Transformer workflows).
+5. `Hybrid/model_exploration.ipynb`, then `Hybrid/FD001_hyperparamter_tunning.ipynb` and FE/AWS notebooks (Hybrid Transformer workflows).
