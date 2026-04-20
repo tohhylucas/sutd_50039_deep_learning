@@ -90,7 +90,7 @@ Use `Hybrid/` for hybrid Transformer-based experiments (LSTM/GRU/CNN encoders wi
     <tr>
       <td><strong>Transformer</strong></td>
       <td><code>RULTransformer</code></td>
-      <td><del>12.10</del> 12.41</td>
+      <td>12.41</td>
     </tr>
     <tr>
       <td rowspan="3"><strong>Hybrid</strong></td>
@@ -107,8 +107,6 @@ Use `Hybrid/` for hybrid Transformer-based experiments (LSTM/GRU/CNN encoders wi
     </tr>
   </tbody>
 </table>
-
-Note on Report Metrics: The report cites a Best Test RMSE of 12.10 for RULTransformer. This reflects the peak test performance observed during the hyperparameter grid search (seed=1234, seq_len=50, lr=0.001, num_layers=1). The final reproducible model (seed=1234, seq_len=50, lr=0.0005, num_layers=1), selected strictly via best Validation RMSE to prevent data leakage, achieved a Test RMSE of 12.41.
 
 ## 6) Data Processing Notebooks (`data_preparation/`)
 
